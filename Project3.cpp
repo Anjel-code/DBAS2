@@ -51,12 +51,18 @@ void openAccount()
     cout << "Enter initial deposit amount: $";
     cin >> initDeposit;
 
+    //Checking initial deposit amount
+    if(initDeposit < 0) {
+        cout << "Error: Invalid deposit amount. Operation failed." << endl;
+        return;
+    }
+
     //Creating new instance(object) of the Account Class
     Account newCustomer = Account(accName, initDeposit);
 
     // Formating float output to 2 decimals
     cout << fixed << setprecision(2);
-    cout << "Account openend: " << newCustomer.getAccNum() << " --- " << newCustomer.getAccName() << ": $" << newCustomer.getAccBalance();
+    cout << "Account openend: " << newCustomer.getAccNum() << " " << newCustomer.getAccName() << ": $" << newCustomer.getAccBalance();
 
     // Storing account into our "database"(vector) of created accounts
     accounts.push_back(newCustomer);
@@ -79,6 +85,13 @@ void makeDeposit()
         {
             cout << "Enter deposit amount: ";
             cin >> amount;
+
+            //Checking the deposit amount
+            if(amount < 0) {
+                cout << "Error: Invalid deposit amount. Operation failed." << endl;
+                return;
+            }
+
             //Mutating accBalance variable if the condition is true.
             accounts[i].setAccBalance((accounts[i].getAccBalance() + amount));
 
@@ -110,7 +123,7 @@ void makeWithdrawal()
         //Checking whether the vector's element private variable accNum is equal to the search account number
         if (accounts[i].getAccNum() == num && accounts[i].getAccName() == name)
         {
-            cout << "Enter withdrawal amount: ";
+            cout << "Enter withdrawal amount: $ ";
             cin >> amount;
             
             //Checking whether the difference of vector's private variable accBalance and user input is greater than or equal to zero
@@ -120,14 +133,14 @@ void makeWithdrawal()
 
                 // formating float output to 2 decimals
                 cout << fixed << setprecision(2);
-                cout << "Withdrawal processed for account" << accounts[i].getAccNum() << " : " << accounts[i].getAccBalance() << endl;
+                cout << "Withdrawal processed for account " << accounts[i].getAccNum() << " : " << accounts[i].getAccBalance() << endl;
                 //Interrupting function
                 return;
             }
 
             //if the condition is false, informing user that there is not enough money on the balance
             else {
-                cout << "Insufficient amount or withdrawal failed.";
+                cout << "Erro: Insufficient funds. Operation failed.";
                 //Interrupting function
                 return;
             }
@@ -155,23 +168,27 @@ void fastTransfer() {
         //Verifying the existance of both accounts
         accounts.at(source - 1000);
         accounts.at(destination - 1000);
+        //Storing the accounts
         sourceId = source - 1000;
         destinationId = destination - 1000;
 
     }
+    //If the ".at" function throws exception, we consider that the account is not found.
     catch(const out_of_range& e) {
         cout << "Error: source or destination account number not found. Operation failed." << endl;
         return;
     }
 
+    //Informing user about insufficient amount, if it is a case.
     if(accounts[sourceId].getAccBalance() < 40) {
         cout << "Error: Insufficient funds. Operation failed.";
         return;
     }
 
+    //If everything is ok, changing balance on both accounts
     accounts[sourceId].setAccBalance(accounts[sourceId].getAccBalance() - 40);
     accounts[destinationId].setAccBalance(accounts[destinationId].getAccBalance() + 40);
-    
+    //Informing user 
     cout << "$40 Fast Transfer processed: " << accounts[destinationId].getAccNum() << " -> " << accounts[sourceId].getAccNum() << endl;
 
 }
