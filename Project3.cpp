@@ -114,6 +114,7 @@ void makeWithdrawal()
 
     cout << "Enter account number: ";
     cin >> num;
+    cin.ignore();
 
     cout << "Enter account name for security purpose: ";
     getline(cin, name);
@@ -163,6 +164,12 @@ void fastTransfer() {
     cin >> source;
     cout << "Enter destination account number: ";
     cin >> destination;
+
+    //Ensuring that user didn't enter the same account numbers
+    if(source == destination) {
+        cout << "Error: Unable to transfer money from the account to itself. Operation failed." << endl;
+        return;
+    }
 
     try {
         //Verifying the existance of both accounts

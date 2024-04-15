@@ -1,16 +1,11 @@
-CC = g++
-CFLAGS = -Wall
-SRCS = Project3.cpp Account.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = proj3
+proj3 : Project3.o Account.o
+	g++ -o proj3 Project3.o Account.o
 
-all: $(TARGET)
+Account.o : Account.cpp Account.h
+	g++ -c -Wall Account.cpp
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS)
+Project3.o : Project3.cpp Account.h
+	g++ -c -Wall Project3.cpp
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	rm -f $(OBJS) $(TARGET)
+clean :
+	rm *.o proj3
