@@ -72,7 +72,7 @@ void makeDeposit()
     cin >> num;
 
     // Searching for account number inside vector
-    for (int i = 0; i < accounts.size(); i++)
+    for (vector<Account>::size_type i = 0; i < accounts.size(); i++)
     {
         //Checking whether the vector's element private variable accNum is equal to the searched account number
         if (accounts[i].getAccNum() == num)
@@ -105,7 +105,7 @@ void makeWithdrawal()
     cout << "Enter account name for security purpose: ";
     getline(cin, name);
 
-    for (int i = 0; i < accounts.size(); i++)
+    for (vector<Account>::size_type i = 0; i < accounts.size(); i++)
     {
         //Checking whether the vector's element private variable accNum is equal to the search account number
         if (accounts[i].getAccNum() == num && accounts[i].getAccName() == name)
@@ -159,7 +159,7 @@ void fastTransfer() {
         destinationId = destination - 1000;
 
     }
-    catch(out_of_range) {
+    catch(const out_of_range& e) {
         cout << "Error: source or destination account number not found. Operation failed." << endl;
         return;
     }
@@ -187,7 +187,7 @@ void printAccounts()
         cout << "+-----------------------------------------------+" << endl;
 
         //Iterating over each account in the vector
-        for (int i = 0; i < accounts.size(); i++)
+        for (vector<Account>::size_type i = 0; i < accounts.size(); i++)
         {
             //Outputing current vector's element info
             cout << "|           " << accounts[i].getAccNum() << " | " << accounts[i].getAccName();
