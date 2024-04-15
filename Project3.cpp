@@ -108,7 +108,7 @@ void makeWithdrawal()
     for (int i = 0; i < accounts.size(); i++)
     {
         //Checking whether the vector's element private variable accNum is equal to the search account number
-        if (accounts[i].getAccNum() == num && accounts.getAccName() == name)
+        if (accounts[i].getAccNum() == num && accounts[i].getAccName() == name)
         {
             cout << "Enter withdrawal amount: ";
             cin >> amount;
@@ -136,7 +136,7 @@ void makeWithdrawal()
 
     //If the loop completed successfully, informing user that the account was not found
     cout << "Error: Account number and name do not match or account not found.";
-    cout << "Access denied."
+    cout << "Access denied.";
 }
 
 void fastTransfer() {
@@ -145,7 +145,7 @@ void fastTransfer() {
     int sourceId;
     int destinationId;
 
-    cout << "$40 Fast Transfer: source -> destination" << endl;
+    cout << "\n$40 Fast Transfer: source -> destination" << endl;
     cout << "Enter source account number: ";
     cin >> source;
     cout << "Enter destination account number: ";
@@ -153,8 +153,10 @@ void fastTransfer() {
 
     try {
         //Verifying the existance of both accounts
-        sourceId = accounts.at(source - 1000);
-        destinationId accounts.at(destination - 1000);
+        accounts.at(source - 1000);
+        accounts.at(destination - 1000);
+        sourceId = source - 1000;
+        destinationId = destination - 1000;
 
     }
     catch(out_of_range) {
@@ -169,6 +171,8 @@ void fastTransfer() {
 
     accounts[sourceId].setAccBalance(accounts[sourceId].getAccBalance() - 40);
     accounts[destinationId].setAccBalance(accounts[destinationId].getAccBalance() + 40);
+    
+    cout << "$40 Fast Transfer processed: " << accounts[destinationId].getAccNum() << " -> " << accounts[sourceId].getAccNum() << endl;
 
 }
 
@@ -235,7 +239,7 @@ int main()
             makeWithdrawal();
             continue;
         case 4:
-            fastTranfer();
+            fastTransfer();
             continue;
         case 5:
             printAccounts();
