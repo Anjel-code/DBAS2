@@ -25,6 +25,9 @@ public:
     
     //Destructor
     ~Account();
+
+    //Operator Overload
+    Account& operator+(Account& const& obj);
     
     //Public Accessors
     int getAccNum();

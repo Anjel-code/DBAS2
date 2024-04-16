@@ -159,6 +159,7 @@ void fastTransfer() {
     int sourceId;
     int destinationId;
 
+    //User Prompt
     cout << "\n$40 Fast Transfer: source -> destination" << endl;
     cout << "Enter source account number: ";
     cin >> source;
@@ -272,7 +273,6 @@ int main()
             // exiting the Swtich-Case block
             cout << "Thank you for your business!" << endl;
             break;
-
         default:
             cout << "Invalid option, please try again." << endl;
             continue;
