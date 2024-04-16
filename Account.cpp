@@ -19,14 +19,10 @@ Account::Account(string name, float balance) {
 //Destructor
 Account::~Account() {}
 
-Account& operator+=(Account const& obj) {
-    this->balance += obj.balance;
-    return this;
-}
-
-Account& operator+=(const Account& other) {
-        balance += other.balance;
-        return *this;
+Account& Account::operator+=(Account& obj) {
+    this->accBalance -= 40;
+    obj.setAccBalance(obj.getAccBalance()+40);
+    return *this;
 }
 
 //Accessors

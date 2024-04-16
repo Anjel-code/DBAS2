@@ -27,7 +27,7 @@ public:
     ~Account();
 
     //Operator Overload
-    Account& operator+(Account& const& obj);
+    Account& operator+=(Account& obj);
     
     //Public Accessors
     int getAccNum();

@@ -194,11 +194,9 @@ void fastTransfer() {
     }
 
     //If everything is ok, changing balance on both accounts
-    accounts[sourceId].setAccBalance(accounts[sourceId].getAccBalance() - 40);
-    accounts[destinationId].setAccBalance(accounts[destinationId].getAccBalance() + 40);
+    accounts.at(sourceId) += accounts.at(destinationId);
     //Informing user 
     cout << "$40 Fast Transfer processed: " << accounts[destinationId].getAccNum() << " -> " << accounts[sourceId].getAccNum() << endl;
-
 }
 
 void printAccounts()
